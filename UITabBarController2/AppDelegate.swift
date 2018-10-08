@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  UITabBarController2
+//  UITabBarController
 //
-//  Created by masato on 8/10/2018.
+//  Created by masato on 7/10/2018.
 //  Copyright © 2018 masato. All rights reserved.
 //
 
@@ -14,8 +14,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    private func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+        // make the Instances in order to set the TabBar
+        let myFirstTab: UIViewController = FirstViewController()
+        let mySecondTab: UIViewController = SecondViewController()
+
+        // make Array with elements in order to set TabBar
+        let myTabs = NSArray(objects: myFirstTab, mySecondTab)
+
+        // make UITabController
+        let myTabBarController: UITabBarController = UITabBarController()
+
+        // make ViewController by using UITabBarController()'s setViwControllers Method
+        myTabBarController.setViewControllers(myTabs as? [UIViewController], animated: false)
+
+        // set myTabBarController in self.window!.rootViewController
+        // (already declare "window" on this page Top as UIWindow Class)
+        self.window!.rootViewController = myTabBarController
+
+        // represent Window
+        self.window!.makeKeyAndVisible()
+
         return true
     }
 
@@ -43,4 +63,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-
